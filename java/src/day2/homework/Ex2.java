@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Ex2 {
 	public static void main(String[] args) {
-		 // determine the new scanner function
+		// determine the new scanner function
 		 Scanner sc = new Scanner(System.in);
 		 // ask the user to put 2 integers on the console
 		System.out.println("Enter 2 integers.");
@@ -26,7 +26,15 @@ public class Ex2 {
 		
 		sc.close();
 		
-		
-		
+		String a = "mm";
+		String b = "m";
+		String d = new String("mm");
+		String c = b + b;
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println(c);
+		System.out.println(d);
+		System.out.println(a == d);
+		System.out.println(a.equals(d));
 	 }
 }
