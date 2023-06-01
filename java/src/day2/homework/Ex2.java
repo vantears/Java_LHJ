@@ -7,7 +7,7 @@ public class Ex2 {
 		 // determine the new scanner function
 		 Scanner sc = new Scanner(System.in);
 		 // ask the user to put 2 integers on the console
-		System.out.println("두 정수를 입력하세요.");
+		System.out.println("Enter 2 integers.");
 		 // determine the variables
 		int num1 = sc.nextInt();
 		int num2 = sc.nextInt();
