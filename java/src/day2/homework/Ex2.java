@@ -28,13 +28,13 @@ public class Ex2 {
 		
 		String a = "mm";
 		String b = "m";
-		String d = new String("mm");
-		String c = b + b;
+		String c = new String("mm");
+		String d = b + b;
 		System.out.println(a);
 		System.out.println(b);
-		System.out.println(c);
 		System.out.println(d);
-		System.out.println(a == d);
-		System.out.println(a.equals(d));
+		System.out.println(c);
+		System.out.println(a == c);
+		System.out.println(a.equals(c));
 	 }
 }
