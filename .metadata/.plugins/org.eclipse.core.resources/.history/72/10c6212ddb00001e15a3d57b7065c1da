@@ -15,11 +15,11 @@ public class Ex1_conditional {
 		W
 		Are you a women? true */
 		
-		char gender;
+		String gender;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your gender: ");
-		gender = sc.next().charAt(0);
-		boolean result = gender == 'W';
+		gender = sc.next();
+		boolean result = gender.equals("W");
 		System.out.println("Are you a woman? " + result);
 		sc.close();
 	}
