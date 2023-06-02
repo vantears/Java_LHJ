@@ -17,21 +17,15 @@ public class Ex2_if {
 		
 		String gender;
 		Scanner sc = new Scanner(System.in);
-		while (true) {
 		System.out.println("Enter gender :");
 		gender = sc.next();
 		if (gender.equals("M") | gender.equals("m")) {
 			System.out.println("Are you a woman? " + "man");
-			sc.close();
-			break;
 		} else if (gender.equals("W")| gender.equals("w")) {
 			System.out.println("Are you a woman? " + "woman");
-			sc.close();
-			break;
 		} else {
 			System.out.println("Please enter a correct gender type");
-			continue;
 		}
-		}
+		sc.close();
 	}
 }
