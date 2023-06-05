@@ -11,7 +11,11 @@ public class NumberEx {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a number : ");
 		num = sc.nextInt();
-	    System.out.println(num % 2 == 0 ? num / 2 : num + 1);
+		if (num % 2 == 0) {
+			System.out.println(num / 2);
+		} else {
+			System.out.println(num + 1);
+		}
 		sc.close();
 	}
 

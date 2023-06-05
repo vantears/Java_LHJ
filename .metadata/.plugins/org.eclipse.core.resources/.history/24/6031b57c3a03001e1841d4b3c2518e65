@@ -22,7 +22,7 @@ public class TriangleEx {
 		b = sc.nextInt();
 		c = sc.nextInt();
 		max = a > b ? (a > c ? a : c) : (b > c ? b : c);
-		if (a + b + c - max > max) {
+		if (max > (a + b + c) - max) {
 			System.out.println("Able to create a triangle");
 		} else {
 			System.out.println("unable to create a triangle");
