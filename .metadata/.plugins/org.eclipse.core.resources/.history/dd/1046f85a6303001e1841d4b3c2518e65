@@ -18,7 +18,7 @@ public class PrimeNumberEx {
 			i++;
 		}
 		
-		//switch
+		// switch
 		switch(count) {
 		case 2:
 			System.out.println(num + " is a prime number.");
@@ -34,8 +34,7 @@ public class PrimeNumberEx {
 			System.out.println(num + " is not a prime number.");
 		}
 		
-		//---------------------------------------------------------
-		//Without using 'count'
+		//Ex2
 		i = 2;
 		while(i < num) {
 			if(num % i == 0) {
