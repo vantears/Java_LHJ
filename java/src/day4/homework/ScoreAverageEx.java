@@ -8,15 +8,15 @@ public class ScoreAverageEx {
 		  (package : day4.homework, file : ScoreAverageEx)
 		  성적은 정수.
 		*/
-		int lang;
-		int eng;
-		int math;
+		int lang, eng, math;
+		double avg;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Language, English, Mathmetics scores : ");
 		lang = sc.nextInt();
 		eng = sc.nextInt();
 		math = sc.nextInt();
-		System.out.println((lang + eng + math)/3);
+		avg = (lang + eng + math) / (double) 3.0;
+		System.out.println(avg);
 		sc.close();
 	}
 
