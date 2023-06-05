@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;day5.whileEx.HelloWordEx&apos; to &apos;HelloWorldEx&apos;&#x0D;&#x0A;- Original project: &apos;java&apos;&#x0D;&#x0A;- Original element: &apos;day5.whileEx.HelloWordEx&apos;&#x0D;&#x0A;- Renamed element: &apos;day5.whileEx.HelloWorldEx&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;HelloWordEx&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;day5.whileEx{HelloWordEx.java[HelloWordEx" matchStrategy="1" name="HelloWorldEx" qualified="false" references="true" similarDeclarations="false" stamp="1685931487625" textual="false" version="1.0"/>
+</session>
