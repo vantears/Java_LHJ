@@ -33,7 +33,11 @@ public class UpDownEx {
 				System.out.println("Up!");
 			}
 		}
+		
 		sc.close();
+		
+		
+
 	}
 
 }
