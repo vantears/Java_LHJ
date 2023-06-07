@@ -1,0 +1,26 @@
+package day6.practice;
+import java.util.Scanner;
+
+public class AverageEx {
+
+	public static void main(String[] args) {
+		int kor, eng, math; 
+		double avg;
+		char stop = 'a';
+		Scanner sc = new Scanner(System.in);
+		while(stop != 'n') {
+			System.out.println("Enter Kor, Eng, Math scores : ");
+			kor = sc.nextInt();
+			eng = sc.nextInt();
+			math = sc.nextInt();
+			avg = (double)(kor + eng + math)/3;
+			System.out.println("Average is " + avg);
+			System.out.println("Continue?(y/n)");
+			stop = sc.next().charAt(0);
+		}
+		System.out.println("Exit!");
+		System.out.println((2 + 4)/10);
+		sc.close();
+	}
+
+}
