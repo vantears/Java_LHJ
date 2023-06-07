@@ -20,34 +20,34 @@ public class UpDownEx {
 		char play = 'y';
 		Scanner sc = new Scanner(System.in);
 		while(play == 'y') {
-		System.out.println("Enter min and max of random number : ");
-		min = sc.nextInt();
-		max = sc.nextInt();
-		int i = min - 1;
-		int random = (int)(Math.random() * (max - min + 1) + min);
-		System.out.println("Guess the random number : ");
-		while(random != i) {
-			i = sc.nextInt();
-			if (i == random) {
-				System.out.println("Good!");
-				System.out.println("Do you want to keep playing?(y/n) : ");
-				do {
-					play = sc.next().charAt(0);
-					if(play != 'y' && play != 'n') {
-						System.out.println("Please enter y or n");
-						check = 1;
+			System.out.println("Enter min and max of random number : ");
+			min = sc.nextInt();
+			max = sc.nextInt();
+			int i = min - 1;
+			int random = (int)(Math.random() * (max - min + 1) + min);
+			System.out.println("Guess the random number : ");
+			while(random != i) {
+				i = sc.nextInt();
+				if (i == random) {
+					System.out.println("Good!");
+					System.out.println("Play again?(y/n) : ");
+					do {
+						play = sc.next().charAt(0);
+						if(play != 'y' && play != 'n') {
+							System.out.println("Please enter y or n");
+							check = 1;
+							} else {
+								check = 0;
+								}
+						}  while(check == 1);
+					} else if(i > random) {
+						System.out.println("Down!");
 						} else {
-						check = 0;
-						}
-					}  while(check == 1);
-				} else if(i > random) {
-					System.out.println("Down!");
-					} else {
-						System.out.println("Up!");
-						}
+							System.out.println("Up!");
+							}
+				}
 			}
-		}
 		sc.close();
-}
+		}
 
 }
