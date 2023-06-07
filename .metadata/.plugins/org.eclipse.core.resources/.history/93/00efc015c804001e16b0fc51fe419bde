@@ -16,11 +16,15 @@ public class TeamLeaderEx {
 		Student number 6 is the team leader.*/
 		
 		int num;
+		int count = 0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a student number : ");
 		num = sc.nextInt();
-		switch (num % 3) {
-		case 0:
+		if (num % 3 == 0) {
+			count = 1;
+		}
+		switch (count) {
+		case 1:
 			System.out.println(num + " is the team leader.");
 			break;
 		default:
