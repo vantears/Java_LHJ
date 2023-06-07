@@ -1,0 +1,10 @@
+package day6.practice;
+
+public class PrimeNumbersEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
