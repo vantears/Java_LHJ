@@ -14,7 +14,6 @@ public class DisJointEx {
 		for(i = 2; i <= x || i <= y; i++) {
 			if(x % i == 0 && y % i == 0) {
 				System.out.println("Not disjoint!");
-				//c++;
 				break;
 			}
 		}

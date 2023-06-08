@@ -5,29 +5,26 @@ public class DisJointEx {
 
 	public static void main(String[] args) {
 		int x, y;
-		int i = 0;
-		//int c = 0;
+		int i = 2;
+		int c = 0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter two integer numbers : ");
 		x = sc.nextInt();
 		y = sc.nextInt();
-		for(i = 2; i <= x || i <= y; i++) {
+		while(i <= x || i <= y) {
 			if(x % i == 0 && y % i == 0) {
-				System.out.println("Not disjoint!");
-				//c++;
+				c++;
 				break;
 			}
+			i++;
 		}
-		if(i > x || i > x) {
-			System.out.println("Disjoint!");
-		}
-		/*switch(c) {
+		switch(c) {
 		case 0:
 			System.out.println("Disjoint!");
 			break;
 		default:
 			System.out.println("Not disjoint!");
-		}*/
+		}
 		sc.close();
 
 	}
