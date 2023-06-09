@@ -1,6 +1,6 @@
-package day4.practice;
+package day8.homework;
 
-public class IfMultipleEx2 {
+public class MethodPrintCharEx {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
