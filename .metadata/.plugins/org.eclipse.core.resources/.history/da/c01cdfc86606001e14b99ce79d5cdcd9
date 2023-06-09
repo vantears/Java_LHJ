@@ -1,0 +1,32 @@
+package day8.practice;
+import java.util.Scanner;
+
+public class Ex {
+
+	public static void main(String[] args) {
+		int a, b;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number : ");
+		a = sc.nextInt();
+		checker(even(a));
+		sc.close();
+
+	}
+	
+	public static void checker(int a) {
+		if(a == 1) {
+			System.out.println(a + " is an even number!");
+		} else {
+			System.out.println(a + " is an odd number!");
+		}
+	}
+	
+	public static int even(int a) {
+		if(a % 2 == 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+}
