@@ -11,24 +11,27 @@ public class MathodArimethicEx {
 		num1 = sc.nextInt();
 		op = sc.next().charAt(0);
 		num2 = sc.nextInt();
-		System.out.println(arithmetic(num1, num2, op));
+		
+		double res = arithmetic(num1, num2, op);
+		
+		System.out.println(num1 + " " + op + " " + num2 + " = " + res);
 		sc.close();
 
 	}
 
-	public static int arithmetic(int a, int b, char c) {
+	public static double arithmetic(int a, int b, char c) {
+		double res = 0.0;
 		if(c == '+') {
-			return a + b;
+			res = a + b;
 		} else if(c == '-') {
-			return a - b;
+			res = a - b;
 		} else if(c == '*') {
-			return a * b;
+			res = a * b;
 		} else if(c == '/') {
-			return a / b;
+			res =  a / (double)b;
 		} else if(c == '%') {
-			return a % b;
-		} else {
-			return 0;
+			res = a % b;
 		}
+		return res;
 	}
 }
