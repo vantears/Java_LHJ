@@ -1,0 +1,70 @@
+package day10.practice;
+
+public class RectEx {
+
+	public static void main(String[] args) {
+		Rect rect1 = new Rect(1, 3, 15, 20);
+		rect1.print();
+		rect1.modify(2, 4, 16, 21);
+		rect1.print();
+
+	}
+
+}
+
+class Rect {
+	private int x, y, width, height;
+
+	public Rect(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public void print() {
+		System.out.println("point x,y : " + x + ", " + y);
+		System.out.println("Width : " + width);
+		System.out.println("Height : " + height);
+	}
+	
+	public void modify(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+	
+}
