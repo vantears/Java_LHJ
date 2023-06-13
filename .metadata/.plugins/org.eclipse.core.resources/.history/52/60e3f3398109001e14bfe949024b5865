@@ -10,10 +10,10 @@ public class Car {
 	private boolean power; //전원
 	
 	//생성자
-	public Car(String name, String company, int year) {
-		this.name = name;
-		this.company = company;
-		this.year = year;
+	public Car(String _name, String _company, int _year) {
+		name = _name;
+		company = _company;
+		year = _year;
 		gear = 'P';
 	}
 	
@@ -56,9 +56,9 @@ public class Car {
 		}
 	}
 
-	public void setGear(char gear) {
-		if(gear == 'P' || gear == 'R' || gear == 'D' || gear == 'N') {
-			this.gear = gear;
+	public void setGear(char _gear) {
+		if(_gear == 'P' || _gear == 'R' || _gear == 'D' || _gear == 'N') {
+			gear = _gear;
 		}
 	}
 
