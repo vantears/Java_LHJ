@@ -1,0 +1,14 @@
+package day12.practice;
+
+public class VocabularyNoteEx2 {
+
+	public static void main(String[] args) {
+		Word w1 = new Word("Happy", "I'm happy");
+		VocabularyNote word1 = new VocabularyNote(w1);
+		word1.print();
+		
+		
+
+	}
+
+}

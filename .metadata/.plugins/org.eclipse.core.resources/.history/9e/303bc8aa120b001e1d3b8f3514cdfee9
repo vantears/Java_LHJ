@@ -1,0 +1,15 @@
+package day11.homework;
+
+import array.Array;
+
+public class BaseballGameEx {
+
+	public static void main(String[] args) {
+		
+		
+		
+		int arr[] = {1, 2, 3, 4};
+		Array.printArray(arr,0,2);
+	}
+
+}

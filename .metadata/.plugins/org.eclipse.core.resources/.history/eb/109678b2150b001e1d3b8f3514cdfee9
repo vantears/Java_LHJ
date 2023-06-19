@@ -1,0 +1,17 @@
+package day11.homework;
+
+import array.Array;
+
+public class BaseballGameEx {
+
+	public static void main(String[] args) {
+		
+		int com[] = new int[3];
+		int user[] = new int[3];
+		int min =1, max = 9;
+		
+		Array.createRandomArray(min, max, com);
+		Array.printArray(com);
+	}
+
+}
