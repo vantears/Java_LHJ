@@ -163,7 +163,7 @@ public class VocabularyNoteController {
 		case 1:
 			System.out.print("Enter a word to modify : ");
 			String word = sc.next();
-			System.out.print("Enter a new word : ");
+			System.out.println("Enter a new word : ");
 			String updateWord = sc.next();
 			if(note.updateTitle(word, updateWord)) {
 				System.out.println("the modification has been successfully done!");
@@ -172,38 +172,11 @@ public class VocabularyNoteController {
 			}
 			break;
 		case 2:
-			System.out.print("Enter a word to modify a meaning of : ");
-			String title = sc.next();
-			if(!note.search(title)) {
-				System.out.println("Failed to find the word!");
-				return;
-			}
-			System.out.print("Enter the meaning number to modify : ");
-			int num = sc.nextInt();
-			sc.nextLine();
-			System.out.print("Enter a new meaning : ");
-			String meaning = sc.nextLine();
-			if(!note.updateMeaning(title, num, meaning)) {
-				System.out.println("Failed to modify the meaning!");
-			} else {
-				System.out.println("The modification has been successfully done!");
-			}
+			
 			break;
 			
 		case 3:
-			System.out.print("Enter a word to delete a meaning of : ");
-			String title2 = sc.next();
-			if(!note.search(title2)) {
-				System.out.println("Failed to find the word!");
-				return;
-			}
-			System.out.print("Enter the meaning number to delete : ");
-			int num2 = sc.nextInt();
-			if(!note.deleteMeaning(title2, num2)) {
-				System.out.println("Failed to delete the meaning");
-			} else {
-				System.out.println("The deletion has been successfully done!");
-			}
+			
 			break;
 		default:
 			

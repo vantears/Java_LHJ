@@ -149,17 +149,4 @@ public class VocabularyNote {
 		return true;
 	}
 
-	public boolean deleteMeaning(String title, int num) {
-		int index = indexOf(title);
-		
-		if(index == -1) {
-			return false;
-		}
-		Word tmp = wordList[index];
-		if(tmp.removeMeaning(num)) {
-			return true;
-		}
-		return false;
-	}
-
 }

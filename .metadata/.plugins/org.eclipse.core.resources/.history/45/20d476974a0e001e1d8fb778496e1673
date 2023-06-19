@@ -51,20 +51,20 @@ public class Word {
 		meaningCount++;
 	}
 	
-	public boolean removeMeaning(int num) {
+	public void removeMeaning(int num) {
 		if(num > meaningCount || num < 1) {
-			//System.out.println("Out of meaning list!");
-			return false;
+			System.out.println("Out of meaning list!");
+			return;
 		}
 		for(int i = num - 1; i < meaningCount - 1; i++) {
 			meaning[i] = meaning[i + 1];
 		}
 		meaning[meaningCount - 1] = null;
 		meaningCount--;
-		return true;
 	}
 	
 	public boolean updateMeaning(int meaningNum, String meaning) {
+		// TODO Auto-generated method stub
 		if(meaningNum > meaningCount || meaningNum <= 0) {
 			return false;
 		}
@@ -79,6 +79,5 @@ public class Word {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 }

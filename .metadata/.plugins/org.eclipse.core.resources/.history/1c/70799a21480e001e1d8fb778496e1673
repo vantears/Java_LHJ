@@ -111,30 +111,27 @@ public class VocabularyNote {
 		return -1;
 	}
 	
-	public boolean search(String title) {
+	public void search(String title) {
 		int index = indexOf(title);
 		
 		if(index == -1) {
 			System.out.println("No words found");
-			return false;
+			return;
 		}
 		
 		wordList[index].print();
-		return true;
 	}
 	
-	public boolean updateMeaning(String title, int meaningIndex, String meaning) {
+	public void updateMeaning(String title, int meaningIndex, String meaning) {
 		int index = indexOf(title);
 		if(index == -1) {
 			System.out.println("No words found");
-			return false;
+			return;
 		}
 		
 		if(!wordList[index].updateMeaning(meaningIndex, meaning)) {
 			System.out.println("Wrong number");
-			return false;
 		}
-		return true;
 	}
 	
 	public boolean updateTitle(String title, String updateTitle) {
@@ -147,19 +144,6 @@ public class VocabularyNote {
 		
 		wordList[index].setTitle(updateTitle);
 		return true;
-	}
-
-	public boolean deleteMeaning(String title, int num) {
-		int index = indexOf(title);
-		
-		if(index == -1) {
-			return false;
-		}
-		Word tmp = wordList[index];
-		if(tmp.removeMeaning(num)) {
-			return true;
-		}
-		return false;
 	}
 
 }

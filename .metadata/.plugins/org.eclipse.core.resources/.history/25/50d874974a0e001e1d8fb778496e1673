@@ -185,25 +185,11 @@ public class VocabularyNoteController {
 			String meaning = sc.nextLine();
 			if(!note.updateMeaning(title, num, meaning)) {
 				System.out.println("Failed to modify the meaning!");
-			} else {
-				System.out.println("The modification has been successfully done!");
 			}
 			break;
 			
 		case 3:
-			System.out.print("Enter a word to delete a meaning of : ");
-			String title2 = sc.next();
-			if(!note.search(title2)) {
-				System.out.println("Failed to find the word!");
-				return;
-			}
-			System.out.print("Enter the meaning number to delete : ");
-			int num2 = sc.nextInt();
-			if(!note.deleteMeaning(title2, num2)) {
-				System.out.println("Failed to delete the meaning");
-			} else {
-				System.out.println("The deletion has been successfully done!");
-			}
+			
 			break;
 		default:
 			
