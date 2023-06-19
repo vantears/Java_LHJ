@@ -1,0 +1,10 @@
+package day14.Inheritance;
+
+public class ClassInteritanceEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
