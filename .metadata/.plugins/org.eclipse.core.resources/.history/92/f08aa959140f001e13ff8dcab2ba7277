@@ -1,0 +1,94 @@
+package day15.practice;
+import java.util.Scanner;
+
+public class runFile {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public void run() {
+		
+		int menu = 0;
+		
+		do {
+			printMenu();//print the menu list.
+			System.out.println("Choose an option in the menu : ");
+			menu = sc.nextInt();
+			switch(menu) {
+			case 1:
+				System.out.println("Checking Sales history!");
+				break;
+			case 2:
+				System.out.println("Storing new products!");
+				break;
+			case 3:
+				System.out.println("Searching products!");
+				break;
+			case 4:
+				System.out.println("Checking the sales figures!");
+				break;
+			case 5:
+				System.out.println("Quitting the program!");
+				break;
+			default :
+				System.out.println("Wrong option!");
+			}
+		}while(menu != 5);
+		
+		sc.close();
+	}
+	
+	private void printMenu() {
+		System.out.println("-MENU-");
+		System.out.println("1. Check the sales history.");
+		System.out.println("2. Store new products.");
+		System.out.println("3. Search products");
+		System.out.println("4. Check the sales figures");
+		System.out.println("5. Quit");
+	}
+	
+	private void subMenu1() {
+		String name;
+		System.out.println("Enter a customer's name : ");
+		name = sc.next();
+		//checking the name on the customerList and print the info
+	}
+
+}
+
+
+class customerList {
+	customer customer[] = new customer[10];
+
+}
+
+class customer {
+	String name;
+}
+
+class productList {
+	product product[] = new product[20];
+	int productCount = 0;
+	
+	private void storeProduct() {
+		
+	}
+	
+}
+
+class product {
+	String title;
+	int quantity = 0;
+	int price;
+	int sales;
+	
+	public product(String title, int quantity, int price) {
+		this.title = title;
+		this.quantity += quantity;
+		this.price = price;
+	}
+	
+	public product(String title, int quantity) {
+		this.quantity += quantity;
+	}
+
+}

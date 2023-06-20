@@ -1,0 +1,13 @@
+package day15.quiz;
+
+public class quiz {
+
+	public static void main(String[] args) {
+		// Quiz1
+		for(int i = 0; i < 10; i++) {
+			System.out.println("Hello" + i);
+		}
+
+	}
+
+}

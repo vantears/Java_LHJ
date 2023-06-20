@@ -1,0 +1,59 @@
+package day15.polymorphism;
+
+public class InstancePolymorphismEx {
+
+	public static void main(String[] args) {
+		/* TV 1대, 에어컨 2대, 라디오 3개를 객체를 생성한 후
+		 * 전원을 켜는 기능을 실행해보세요 */
+		tv tv1 = new tv();
+		airConditioner air1 = new airConditioner();
+		airConditioner air2 = new airConditioner();
+		radio radio1 = new radio();
+		radio radio2 = new radio();
+		radio radio3 = new radio();
+		
+		remoteController remote = new remoteController();
+		remote.turnOn(tv1);
+		remote.turnOn(air1);
+		remote.turnOn(air2);
+		remote.turnOn(radio1);
+		remote.turnOn(radio2);
+		remote.turnOn(radio3);
+
+	}
+
+}
+
+class remoteController {
+	public void turnOn(homeAppliances appliance) {
+		appliance.turnOn();
+		System.out.println(appliance + "전원이 켜졌습니다.");
+	}
+	public void turnOff(homeAppliances appliance) {
+		appliance.turnOff();
+		System.out.println("전원이 꺼졌습니다.");
+	}
+}
+
+class tv extends homeAppliances {
+	int channel;	
+}
+
+class airConditioner extends homeAppliances {
+	double currentTemperature;
+	double desiredTemperature;
+}
+
+class radio extends homeAppliances {
+	double frequency;
+}
+
+class homeAppliances {
+	boolean power;
+	void turnOn() {
+		power = true;
+	}
+	void turnOff() {
+		power = false;
+	}
+}

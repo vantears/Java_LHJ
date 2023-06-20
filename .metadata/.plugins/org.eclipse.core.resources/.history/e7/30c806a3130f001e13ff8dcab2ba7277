@@ -1,0 +1,44 @@
+package day15.practice;
+import java.util.Scanner;
+
+public class runFile {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public void run() {
+		
+		int menu = 0;
+		
+		do {
+			printMenu();//print the menu list.
+			System.out.println("Choose a menu : ");
+			menu = sc.nextInt();
+		}while(menu != 5);
+		
+		sc.close();
+	}
+	
+	private void printMenu() {
+		System.out.println("-MENU-");
+		System.out.println("1. Check the sales history.");
+		System.out.println("2. Store new products.");
+		System.out.println("3. Search products");
+		System.out.println("4. Check the sales figures");
+		System.out.println("5. Quit");
+	}
+
+}
+
+
+class customerList {
+String name;
+}
+
+class productList {
+String title;
+int price;
+}
+
+class account {
+int account;
+}

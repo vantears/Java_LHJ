@@ -1,0 +1,102 @@
+package day15.practice.shop.controller;
+
+import java.util.Scanner;
+
+public class shopManager {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public void run() {
+		
+		int menu = 0;
+		
+		do {
+			printMenu();//print the menu list.
+			menu = sc.nextInt();
+			runMenu(menu);
+		}while(menu != 6);
+		
+		sc.close();
+	}
+	
+	private void printMenu() {
+		System.out.println("=========================");
+		System.out.println("-MENU-");
+		System.out.println("1. Sell products.");
+		System.out.println("2. Store new products.");
+		System.out.println("3. Search products");
+		System.out.println("4. Check the sales figures");
+		System.out.println("5. Register a customer");
+		System.out.println("6. Quit");
+		System.out.print("Choose an option in the menu : ");
+	}
+	
+	private void runMenu(int menu) {
+		switch(menu) {
+		case 1:
+			sellSubMenu();
+			break;
+		case 2:
+			System.out.println("Storing new products!");
+			break;
+		case 3:
+			System.out.println("Searching products!");
+			break;
+		case 4:
+			System.out.println("Checking the sales figures!");
+			break;
+		case 5:
+			System.out.println("Registering a customer!");
+			break;
+		case 6:
+			System.out.println("Quitting the program!");
+			break;
+		default :
+			System.out.println("Wrong option!");
+		}
+	}
+	
+	private String printProduct(int product) {
+		switch(product) {
+		case 1:
+			return "TV";
+		case 2:
+			return "Airconditioner";
+		case 3:
+			return "Radio";
+		}
+		return "nothing";
+	}
+	
+	private void sellSubMenu() {
+		String name;
+		int product;
+		int quantity;
+		System.out.print("Enter the customer name : ");
+		name = sc.next();
+		System.out.println("1. TV");
+		System.out.println("2. Airconditioner");
+		System.out.println("3. Radio");
+		System.out.print("Choose a product to sell : ");
+		product = sc.nextInt();
+		System.out.print("How many of the product is going to be sold? : ");
+		quantity = sc.nextInt();
+		//sellProduct(product, quantity);
+		System.out.println(name + " has bought " + quantity + " " + printProduct(product) + "(s)");
+		
+	}
+	
+	private void storeSubMenu() {
+		
+	}
+	
+	private void searchSubMenu() {
+		
+	}
+	private void salesSubMenu() {
+		
+	}
+	private void registerSubMenu() {
+		
+	}
+}

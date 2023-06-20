@@ -1,0 +1,103 @@
+package day15.practice.shop.product;
+
+public class product {
+	
+	int account = 0;
+	int productCount = 0;
+	product products[] = new product[20];
+	
+	private void addProduct(int num, int quantity) {
+		if(productCount == products.length) {
+			System.out.println("The storage is full!");
+			return;
+		}
+		switch(num) {
+		case 1:
+			for(int i = 0; i < quantity; i++) {
+				products[productCount] = new TV();
+			}
+			System.out.println(quantity + " TV(s) has(have) been stored.");
+			productCount++;
+			break;
+		case 2:
+			for(int i = 0; i < quantity; i++) {
+				products[productCount] = new airConditioner();
+			}
+			System.out.println(quantity + " Airconditioner(s) has(have) been stored.");
+			productCount++;
+			break;
+		case 3:
+			for(int i = 0; i < quantity; i++) {
+				products[productCount] = new Radio();
+			}
+			System.out.println(quantity + " Radio(s) has(have) been stored.");
+			productCount++;
+			break;
+		default:
+			System.out.println("Wrong product!");
+		}
+
+	}
+	
+	private int sellProduct(int num, int quantity) {
+		if(productCount < 1) {
+			System.out.println("No product is on sale!");
+			return;
+		}
+		switch(num) {
+		case 1:
+			for(int i = 0; i < products.length; i++) {
+				if(products[i] instanceof TV) {
+					for(int j = i + 1; j < products.length; j++)
+						if(products[j] instanceof TV) {
+							products[i] = products[j];
+							break;
+						}
+					products[productCount] = new TV();
+				}
+			
+			}
+			System.out.println(quantity + " TV(s) has(have) been stored.");
+			productCount++;
+			break;
+		case 2:
+			for(int i = 0; i < quantity; i++) {
+				products[productCount] = new airConditioner();
+			}
+			System.out.println(quantity + " Airconditioner(s) has(have) been stored.");
+			productCount++;
+			break;
+		case 3:
+			for(int i = 0; i < quantity; i++) {
+				products[productCount] = new Radio();
+			}
+			System.out.println(quantity + " Radio(s) has(have) been stored.");
+			productCount++;
+			break;
+		default:
+			System.out.println("Wrong product!");
+		}
+	}
+
+	
+}
+
+class TV extends product{
+	String title = "TV";
+	int price = 5000;
+}
+
+class airConditioner extends product{
+	String title = "aircon";
+	int price = 10000;
+}
+
+class Radio extends product{
+	String title = "radio";
+	int price = 3000;
+}
+
+class product {
+	String title;
+	int price;
+}

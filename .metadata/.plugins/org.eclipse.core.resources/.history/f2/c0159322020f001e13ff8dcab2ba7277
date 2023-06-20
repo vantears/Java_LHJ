@@ -1,0 +1,10 @@
+package day15.polymorphism;
+
+public class InstancePolymorphismEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
