@@ -1,0 +1,140 @@
+package day16.homework;
+import java.util.Scanner;
+import java.util.ArrayList;
+import day16.homework.Baverage;
+
+public class BendingMachine {
+	
+	int money = 0;
+	Scanner sc = new Scanner(System.in);
+	ArrayList<Baverage> baverage = new ArrayList<>();
+	baverage.add(new Baverage("Sprite", 500, 0));
+	baverage.add(new Baverage("Coke", 600, 0));
+	baverage.add(new Baverage("Fanta", 400, 0));
+	
+	//Sprite sprite = new Sprite();
+	//Coke coke = new Coke();
+	//Fanta fanta = new Fanta();
+	int countS;
+	int countC;
+	int countF;
+	
+	public void run() {
+		int menu = 0;
+		do {
+			print();
+			menu = sc.nextInt();
+			switch(menu) {
+			case 1:
+				insertMoney();
+				break;
+			case 2:
+				selectBaverage();
+				break;
+			case 3:
+				storeBaverage();
+				break;
+			case 4:
+				System.out.println("Qutting!");
+				break;
+			default:
+				System.out.println("Wrong option!");
+			}
+		}while(menu != 4);
+		
+		sc.close();
+
+	}
+	
+	private void storeBaverage() {
+		int menu, amount = 0;
+		System.out.println("1. Sprite");
+		System.out.println("2. Coke");
+		System.out.println("3. Fanta");
+		System.out.print("Choose baverage : ");
+		menu = sc.nextInt();
+		switch(menu) {
+		case 1:
+			System.out.print("How many Sprite do you store ? : ");
+			amount = sc.nextInt();
+			baverage.get(0).store(amount);
+			System.out.println(amount + " Sprite is(are) stored!");
+			break;
+		case 2:
+			System.out.print("How many Coke do you store ? : ");
+			amount = sc.nextInt();
+			baverage.get(0).store(amount);
+			System.out.println(amount + " Coke is(are) stored!");
+			break;
+		case 3:
+			System.out.print("How many Fanta do you store ? : ");
+			amount = sc.nextInt();
+			baverage.get(0).store(amount);
+			System.out.println(amount + " Fanta is(are) stored!");
+			break;
+		default:
+			System.out.println("Wrong baverage!");
+		}
+	}
+
+	private void selectBaverage() {
+		int menu = 0;
+		System.out.println("1. Sprite");
+		System.out.println("2. Coke");
+		System.out.println("3. Fanta");
+		System.out.print("Choose baverage : ");
+		menu = sc.nextInt();
+		switch(menu) {
+		case 1:
+			System.out.println("Sprite" + " is chosen");
+			System.out.println("Sprite" + " is served");
+			baverage.get(0).sellOut();
+			money -= baverage.get(0).getPrice();
+			System.out.println("Change $" + money + " is returned");
+			money = 0;
+			break;
+		case 2:
+			System.out.println("Coke" + " is chosen");
+			System.out.println("Coke" + " is served");
+			baverage.get(1).sellOut();
+			money -= baverage.get(1).getPrice();
+			System.out.println("Change $" + money + " is returned");
+			money = 0;
+			break;
+		case 3:
+			System.out.println("Fanta" + " is chosen");
+			System.out.println("Fanta" + " is served");
+			baverage.get(2).sellOut();
+			money -= baverage.get(2).getPrice();
+			System.out.println("Change $" + money + " is returned");
+			money = 0;
+			break;
+		default:
+			System.out.println("Wrong baverage!");
+		}
+		
+	}
+
+	private void insertMoney() {
+		int insert;
+		System.out.print("How much money do you insert? : ");
+		insert = sc.nextInt();
+		money += insert;
+		System.out.println("$" + money + " is inserted!");
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void print() {
+		System.out.println("MENU");
+		System.out.println("1. Insert money");
+		System.out.println("2. Select baverage");
+		System.out.println("3. Store baverage");
+		System.out.println("4. Quit");
+		System.out.print("Choose an option : ");
+	}
+
+}
+
+
+

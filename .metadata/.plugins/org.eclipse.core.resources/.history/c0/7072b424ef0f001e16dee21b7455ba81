@@ -1,0 +1,35 @@
+package day16.abstractex;
+
+public class AbstractEx {
+
+	public static void main(String[] args) {
+		ChildA2 ch = new ChildA2();
+		ch.test();
+		
+		A a = new A() {
+			public void test() {
+				System.out.println("Test");
+			}
+		};
+	}
+
+}
+
+abstract class A {
+	public int num;
+	public abstract void test();
+}
+
+abstract class ChildA1 extends A {
+	
+}
+
+class ChildA2 extends A {
+
+	@Override
+	public void test() {
+		num = 5;
+		System.out.println(num);
+	}
+
+}
