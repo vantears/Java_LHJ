@@ -46,7 +46,7 @@ public class product {
 		System.out.println("---------------");
 		System.out.println("Name : " + this.productName);
 		System.out.println("Model : " + this.modelName);
-		System.out.println("Price : " + this.price);
+		System.out.println("Price : $" + this.price);
 		System.out.println("Stored amount : " + this.amount);
 		System.out.println("Category : " + this.category);
 	}

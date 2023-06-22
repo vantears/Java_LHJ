@@ -8,8 +8,11 @@ public class shopManager {
 	Scanner sc = new Scanner(System.in);
 	private product productList[] = new product[10];
 	private customer customerList[] = new customer[10];
+	private salesHistory history[] = new salesHistory[100];
 	private int count = 0;
 	private int countC = 0;
+	private int account = 0;
+	private int countH = 0;
 	
 	public void run() {
 		
@@ -60,45 +63,37 @@ public class shopManager {
 			System.out.println("Wrong option!");
 		}
 	}
-	
-	private String printProduct(int product) {
-		switch(product) {
-		case 1:
-			return "TV";
-		case 2:
-			return "Airconditioner";
-		case 3:
-			return "Radio";
-		}
-		return "";
-	}
+
 	
 	private void sellSubMenu() {
-		String name;
-		String productName;
-		int quantity;
-		System.out.print("Enter the customer name to sell to: ");
+		
+		System.out.print("Product : ");
 		sc.nextLine();
-		name = sc.nextLine();
-		int indexC = indexOfC(name);
-		if(indexC == -1) {
-			System.out.println("No such customer is found!");
-			return;
-		}
-		System.out.print("Enter the product name to sell : ");
-		productName = sc.nextLine();
+		String productName = sc.nextLine();
 		int index = indexOf(productName);
 		if(index == -1) {
 			System.out.println("No such product is stored!");
 			return;
 		}
-		System.out.print("How many of the product is going to be sold? : ");
-		quantity = sc.nextInt();
+		System.out.print("Amount : ");
+		int quantity = sc.nextInt();
 		if(quantity < 0) {
 			System.out.println("The amount is not correct!");
 			return;
 		}
+		System.out.print("Customer's phone number: ");
+		sc.nextLine();
+		String phoneNumber = sc.nextLine();
+		int indexC = indexOfC(phoneNumber);
+		if(indexC == -1) {
+			System.out.println("No such customer is found!");
+			return;
+		}
+		salesHistory sales = new salesHistory(customerList[indexC], productList[index], quantity);
+		history[countH++] = sales;
 		productList[index].sellOut(quantity);
+		account += sales.getPrice();
+		System.out.println(customerList[indexC].getName() + " has bought " + quantity + " " + productName + "(s)" + " for $" + sales.getPrice());
 		
 	}
 	
@@ -135,8 +130,6 @@ public class shopManager {
 		productList[count] = new product(productName, modelName, price, amount, category);
 		productList[count].printProduct();
 		count++;
-
-		
 		
 	}
 	
@@ -152,20 +145,50 @@ public class shopManager {
 		System.out.println("No such product is stored!");
 	}
 	private void salesSubMenu() {
+		int menu = 0;
+		System.out.println("1. Sales history");
+		System.out.println("2. The total sales figures");
+		System.out.print("Choose an option : ");
+		menu = sc.nextInt();
+		switch(menu) {
+		case 1:
+			if(countH == 0) {
+				System.out.println("No sales history yet!");
+				return;
+			}
+			for(int i = 0; i < countH; i++) {
+				System.out.println("----------------");
+				System.out.println("No. " + (i + 1));
+				history[i].printHistory();
+			}
+			break;
+		case 2:
+			System.out.println("The total sales figures : $" + account);
+			break;
+		default:
+			System.out.println("Wrong option!");
+			return;
+		}
 		
 	}
 	private void registerSubMenu() {
 		String name;
+		String phoneNumber;
 		System.out.print("Enter the customer's name : ");
 		sc.nextLine();
 		name = sc.nextLine();
-		int index = indexOfC(name);
+		System.out.print("Enter the phone number : ");
+		phoneNumber = sc.next();
+		if(countC == customerList.length) {
+			System.out.println("Can't register more customers!");
+			return;
+		}
+		int index = indexOfC(phoneNumber);
 		if(index != -1) {
 			System.out.println("The customer is already registered!");
 			return;
 		}
-		customerList[countC] = new customer(name);
-		countC++;
+		customerList[countC++] = new customer(name, phoneNumber);
 		printCustomerList();
 	}
 	
@@ -178,9 +201,9 @@ public class shopManager {
 		return -1;
 	}
 	
-	public int indexOfC(String name) {
+	public int indexOfC(String phoneNumber) {
 		for(int i = 0; i < countC; i++) {
-			if(customerList[i].getName().equals(name)) {
+			if(customerList[i].getPhoneNumber().equals(phoneNumber)) {
 				return i;
 			}
 		}
@@ -193,8 +216,7 @@ public class shopManager {
 			return;
 		}
 		for(int i = 0; i < countC; i++) {
-			System.out.println((i + 1) + ". custmoer");
-			System.out.println("Name : " + customerList[i].getName());
+			customerList[i].print();
 		}
 	}
 
