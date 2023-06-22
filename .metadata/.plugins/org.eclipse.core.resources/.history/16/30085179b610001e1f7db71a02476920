@@ -111,8 +111,6 @@ public class ShopServiceImp implements ShopService {
 		
 		salesHistory salesHistory = new salesHistory(customerList[customerIndex], sellProduct);
 		
-		productList[productIndex].sellOut(amount);
-		
 		history[countH] = salesHistory;
 		return countH + 1;
 	}

@@ -12,6 +12,7 @@ public class shopController {
 	private int count = 0;
 	private int countC = 0;
 	private int countH = 0;
+	private int account = 0;
 	
 	private ShopService shopService= new ShopServiceImp();
 	

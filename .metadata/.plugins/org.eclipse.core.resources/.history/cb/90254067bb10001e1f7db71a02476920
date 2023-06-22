@@ -1,0 +1,10 @@
+package day17.object;
+
+public class EqualsEx {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,38 @@
+package day17.object;
+
+import lombok.Data;
+
+public class EqualsEx {
+
+	public static void main(String[] args) {
+		Customer list[] = {
+				new Customer("A", "010-1234-5678"),
+				new Customer("B", "010-1111-5678"),
+				new Customer("C", "010-1234-5678")
+		};
+		Customer customer = new Customer("A", "010-1234-5678");
+		
+		for(Customer tmp : list) {
+			if(tmp.getPhoneNumber().equals(customer.getPhoneNumber())) {
+				System.out.println("OK");
+				return;
+			}
+		}
+		System.out.println("Fail");
+		return;
+	}
+
+}
+
+@Data
+class Customer {
+	private String id;
+	private String name;
+	private String phoneNumber;
+	
+	public Customer(String name, String phoneNumber) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+	}
+	
+}
