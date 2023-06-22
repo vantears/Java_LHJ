@@ -1,0 +1,10 @@
+package day17.practice.run;
+
+public class run {
+
+	public static void main(String[] args) {
+		shopManager shop = new shopManager();
+		shop.run();
+	}
+
+}

@@ -1,0 +1,26 @@
+package day17.interfaceex;
+
+public class RunInterface {
+	public static void main(String[] args) {
+		interFace face = new interFace();
+		face.run();
+		System.out.println(interfaceEx.num);
+	}
+	
+}
+
+interface interfaceEx {
+	int num = 10;
+	default void run() {
+		System.out.println("Run!");
+	}
+	static void stop() {
+		System.out.println("Stop");
+	}
+}
+
+class interFace implements interfaceEx {
+
+
+
+}
