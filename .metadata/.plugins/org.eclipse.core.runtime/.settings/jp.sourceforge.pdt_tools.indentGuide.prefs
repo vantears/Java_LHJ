@@ -1,5 +1,0 @@
-content_types=org.eclipse.core.runtime.text|org.eclipse.egit.contenttype.gitignore|org.eclipse.mylyn.wikitext|org.eclipse.mylyn.wikitext.mediawiki|org.eclipse.mylyn.wikitext.markdown|org.eclipse.mylyn.wikitext.confluence|org.eclipse.mylyn.wikitext.asciidoc|org.eclipse.mylyn.wikitext.twiki|org.eclipse.mylyn.wikitext.tracwiki|org.eclipse.mylyn.wikitext.textile|org.eclipse.ltk.core.refactoring.refactoringIndex|org.eclipse.egit.patch|org.eclipse.ui.views.log.log|org.eclipse.core.runtime.xml|org.eclipse.emf.ecore.xmi|org.eclipse.emf.emof|org.eclipse.oomph.setup|org.eclipse.emf.ecore|org.eclipse.jdt.junit.JUnitResult|org.eclipse.wst.xml.core.xmisource|org.eclipse.wst.xml.core.xslsource|org.eclipse.e4.content-type|org.eclipse.ant.core.antBuildFile|org.eclipse.m2e.core.pomFile|org.eclipse.wst.xml.core.xmlsource|org.eclipse.jdt.core.javaProperties|org.eclipse.core.resources.preferences|org.eclipse.jdt.core.JARManifest|org.eclipse.ltk.core.refactoring.refactoringHistory|org.eclipse.jdt.core.javaSource
-draw_blank_line=true
-draw_left_end=false
-eclipse.preferences.version=1
-line_color=192,192,192

@@ -1,9 +1,0 @@
-package day17.practice.service;
-
-import day17.practice.vo.product;
-
-public interface ShopService {
-
-	int store(product[] productList, int count, product product);
-	
-}
