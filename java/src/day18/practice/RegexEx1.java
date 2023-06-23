@@ -8,9 +8,10 @@ public class RegexEx1 {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("input : ");
 		String str = sc.nextLine();
-		String regex = "[a-zA-Z]+.jpg$|[a-zA-Z]+.png$|[a-zA-Z]+.bmp$";
-		boolean result = Pattern.matches(regex, str);
-		System.out.println(str + " : " + (result?"Image":"Not image"));
+		String isImage = 
+				Pattern.matches("[a-zA-Z]+.jpg$|[a-zA-Z]+.png$|[a-zA-Z]+.bmp$", str)?
+						"Image":"Not image";
+		System.out.println(str + " : " + isImage);
 		
 		sc.close();
 
