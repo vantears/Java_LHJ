@@ -1,0 +1,24 @@
+package day18.string;
+
+public class StringEx1 {
+
+	public static void main(String[] args) {
+		String str = "Hello world";
+		
+		int index = str.indexOf("wo", 7);
+		System.out.println(index);
+		
+		index = str.indexOf("wo");
+		System.out.println(index);
+		
+		boolean result = str.contains("o");
+		System.out.println(result);
+		
+		System.out.println(str.length());
+		
+		String str2 = str.replace(" ", ",");
+		System.out.println(str2);
+
+	}
+
+}

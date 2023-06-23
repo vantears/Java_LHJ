@@ -1,0 +1,23 @@
+package day18.practice;
+import java.util.Scanner;
+
+public class StringCharAtEx {
+	public static void main(String[] args) {
+		String ex = "abcdefghijklmnopqrstuvwxyz";
+		String str;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Input a word : ");
+		str = sc.nextLine();
+		for(int i = 0; i < str.length(); i++) {
+			int exCount = 0;
+			for(int j = 0; j < ex.length(); j++) {
+				if(ex.charAt(i) == str.charAt(j)) {
+					exCount++;
+				}	
+			}
+			System.out.println(ex.charAt(i) + " : " + exCount);
+		}
+		sc.close();
+	}
+}

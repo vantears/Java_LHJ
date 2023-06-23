@@ -1,0 +1,60 @@
+package day18.practice;
+import java.util.Scanner;
+
+public class StringCharAtEx {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String ex = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+		String str;
+		System.out.println("Input : ");
+		str = sc.nextLine();
+		
+		//for loop
+		for(int i = 0; i < ex.length(); i+=2) {
+			int exCount = 0;
+			for(int j = 0; j < str.length(); j++) {
+				if(ex.charAt(i) == str.charAt(j) || ex.charAt(i + 1) == str.charAt(j) ) {
+					exCount++;
+				}	
+			}
+			if(exCount > 0) {
+				System.out.println(ex.charAt(i) + "(" + ex.charAt(i + 1) + ")" + " : " + exCount);				
+			}
+		}
+		
+		System.out.println("======================");
+		
+		//while loop
+		int exIndex = 0;
+		while(exIndex < ex.length()) {
+			int exCount = 0;
+			for(int j = 0; j < str.length(); j++) {
+				if(ex.charAt(exIndex) == str.charAt(j) || ex.charAt(exIndex + 1) == str.charAt(j) ) {
+					exCount++;
+				}	
+			}
+			if(exCount > 0) {
+				System.out.println(ex.charAt(exIndex) + "(" + ex.charAt(exIndex + 1) + ")" + " : " + exCount);
+			}
+			exIndex += 2;
+		}
+		
+		System.out.println("========================");
+		
+		//indexOf
+		int count = 0;
+		for(int i = 0; i < ex.length(); i += 2) {
+			for(int j = 0; j < str.length(); j++) {
+				if(str.indexOf(ex.charAt(i), j) != -1 || str.indexOf(ex.charAt(i + 1), j) != -1){
+					count++;
+					} else {
+						break;
+						}
+				}
+			if(count > 0) {
+				System.out.println(ex.charAt(i) + "(" + ex.charAt(i + 1) + ")" + " : " + count);
+				}
+		}
+		sc.close();
+	}
+}

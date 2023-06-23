@@ -1,0 +1,14 @@
+package day18.string;
+
+public class StringEx1 {
+
+	public static void main(String[] args) {
+		String str = "Hello World";
+		
+		int index = str.indexOf("wo");
+		
+		System.out.println(index);
+
+	}
+
+}

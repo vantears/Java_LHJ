@@ -1,0 +1,19 @@
+package day18.string;
+
+public class StringEx1 {
+
+	public static void main(String[] args) {
+		String str = "Hello world";
+		
+		int index = str.indexOf("wo", 7);
+		System.out.println(index);
+		
+		index = str.indexOf("o");
+		System.out.println(index);
+		
+		char index2 = str.charAt(6);
+		System.out.println(index2);
+
+	}
+
+}

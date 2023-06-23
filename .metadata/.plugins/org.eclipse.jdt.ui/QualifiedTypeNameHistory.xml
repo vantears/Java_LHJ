@@ -6,8 +6,10 @@
     <fullyQualifiedTypeName name="day12.practice.VocabularyNote"/>
     <fullyQualifiedTypeName name="day13.homework.vo.VocabularyNote"/>
     <fullyQualifiedTypeName name="javax.annotation.processing.AbstractProcessor"/>
-    <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthOptionPaneUI"/>
     <fullyQualifiedTypeName name="day15.practice.run.run"/>
     <fullyQualifiedTypeName name="day15.practice.shop.shopManager"/>
+    <fullyQualifiedTypeName name="day16.homework.Baverage"/>
+    <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthOptionPaneUI"/>
+    <fullyQualifiedTypeName name="java.awt.List"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
 </qualifiedTypeNameHistroy>
