@@ -30,7 +30,6 @@ public class StringEx1 {
 		String str3 = "\n\t\tabc\t\tdef\t\n";
 		System.out.println(str3);
 		System.out.println(str3.trim());
-		System.out.println(str3.replace("\t", "\n"));
 		
 		String str4 = "Apple,Pear,Grapes";
 		String fruits[] = str4.split(",");
