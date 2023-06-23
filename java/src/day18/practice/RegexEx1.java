@@ -10,7 +10,7 @@ public class RegexEx1 {
 		String str = sc.nextLine();
 		String regex = "[a-zA-Z]+.jpg$|[a-zA-Z]+.png$|[a-zA-Z]+.bmp$";
 		boolean result = Pattern.matches(regex, str);
-		System.out.println(result);
+		System.out.println(str + " : " + (result?"Image":"Not image"));
 		
 		sc.close();
 
