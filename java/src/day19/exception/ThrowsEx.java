@@ -9,7 +9,7 @@ public class ThrowsEx {
 		try {
 			arr = null;
 			printArray(arr);
-			res = mod(num1, num2);
+			//res = mod(num1, num2);
 			//res = mod2(num1, num2);
 			//System.out.println(res);
 		} catch(Exception e) {

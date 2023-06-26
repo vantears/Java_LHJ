@@ -24,7 +24,7 @@ public class ArithmethicEx {
 		
 	}
 	
-	public static void operation(int num1, char op, int num2) {
+	public static void operation(int num1, char op, int num2) throws Exception {
 		switch(op) {
 		case '+':
 			System.out.println(num1 + " " + op + " " + num2 + " = " + (num1 + num2));
