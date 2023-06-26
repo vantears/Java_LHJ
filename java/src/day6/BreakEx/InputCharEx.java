@@ -13,7 +13,7 @@ public class InputCharEx {
 			ch = sc.next().charAt(0);
 			if(ch == 'q') {
 				break;
-			}		
+			}	
 		}
 		sc.close();
 	}
