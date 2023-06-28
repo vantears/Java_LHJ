@@ -1,13 +1,13 @@
 package day21.practice;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Run {
 	private static final int EXIT = 3;
 	private Scanner sc = new Scanner(System.in);
 	private ArrayList<RandomNum> randomNum = new ArrayList<>();
-	private int numCount = 0;
 	
 	public void run() {
 		int menu;
@@ -43,27 +43,26 @@ public class Run {
 	
 	private void play() {
 		int r = (int)(Math.random() * 100 + 1);
-		randomNum.add(new RandomNum());
-		numCount++;
 		int user;
+		int count = 0;
 		System.out.print("Guess the random number (1 to 100) : ");
+		System.out.println(r);
 		do {
 			user = sc.nextInt();
 			if(user == r) {
 				System.out.println("Correct!");
-				randomNum.get(numCount -1).addTryCount();
 			} else if(user > r) {
 				System.out.println("Down!");
-				randomNum.get(numCount -1).addTryCount();
 			} else {
 				System.out.println("Up!");
-				randomNum.get(numCount -1).addTryCount();
 			}
+			count++;
 		}while(user != r);
 		
 		System.out.print("Record Id : ");
 		String id = sc.next();
-		randomNum.get(numCount-1).setId(id);
+		randomNum.add(new RandomNum(id, count));
+		randomNum.sort((RandomNum o1, RandomNum o2)->o1.getTryCount() - o2.getTryCount());
 	}
 	
 	private void record() {
@@ -73,4 +72,16 @@ public class Run {
 			i++;
 		}
 	}
+	
+	/*private void sort(ArrayList<RandomNum> randomNum) {
+		for(int i =0; i < randomNum.size() - 1; i++) {
+			for(int j = 0; j < randomNum.size() - 1 - i; j++) {
+				if(randomNum.get(j).getTryCount() > randomNum.get(j + 1).getTryCount()) {
+					RandomNum tmp = randomNum.get(j);
+					randomNum.set(j, randomNum.get(j + 1));
+					randomNum.set(j + 1, tmp);
+				}
+			}
+		}
+	}*/
 }
