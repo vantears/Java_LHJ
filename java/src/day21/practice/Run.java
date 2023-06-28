@@ -58,11 +58,23 @@ public class Run {
 			}
 			count++;
 		}while(user != r);
-		
-		System.out.print("Record Id : ");
-		String id = sc.next();
-		randomNum.add(new RandomNum(id, count));
-		randomNum.sort((RandomNum o1, RandomNum o2)->o1.getTryCount() - o2.getTryCount());
+		if(randomNum.size() < 5) {			
+			System.out.print("Record Id : ");
+			String id = sc.next();
+			randomNum.add(new RandomNum(id, count));
+			randomNum.sort((RandomNum o1, RandomNum o2)->o1.getTryCount() - o2.getTryCount());
+		} else {
+			for(int i = 0; i < randomNum.size() -1; i++) {
+				if(count < randomNum.get(i).getTryCount()) {
+					System.out.print("Record Id : ");
+					String id = sc.next();
+					randomNum.add(new RandomNum(id, count));
+					randomNum.sort((RandomNum o1, RandomNum o2)->o1.getTryCount() - o2.getTryCount());
+					randomNum.remove(5);
+					break;
+				}
+			}
+		}
 	}
 	
 	private void record() {
