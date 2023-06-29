@@ -70,7 +70,7 @@ public class Run {
 					String id = sc.next();
 					randomNum.add(new RandomNum(id, count));
 					randomNum.sort((RandomNum o1, RandomNum o2)->o1.getTryCount() - o2.getTryCount());
-					randomNum.remove(5);
+					randomNum.remove(randomNum.size() - 1);
 					break;
 				}
 			}
