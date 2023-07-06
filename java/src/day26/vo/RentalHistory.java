@@ -25,6 +25,7 @@ public class RentalHistory implements Serializable{
 	public void print() {
 		System.out.println("-------------");
 		System.out.println("Book : " + book.getTitle());
+		System.out.println("Author : " + book.getAuthor());
 		System.out.println("Rental Date : " + rentalDate);
 		System.out.println("Due Date : " + dueDate);
 		if(returnDate == null) {

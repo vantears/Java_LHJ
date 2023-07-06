@@ -64,7 +64,7 @@ public class Controller {
 			PrintHistory();
 			break;
 		case 5:
-			System.out.println("Quitting!");
+			System.out.println("Have a wise day!");
 			break;
 		default:
 			System.out.println("Wrong option!");
@@ -151,15 +151,19 @@ public class Controller {
 	}
 	
 	private void createIsbn(int bookCount) {
+		int duplicateCount;
 		while(true) {
-			int isbn = (int)(Math.random() * (9999999 - 1000000 + 1) + 1000000);			
+			duplicateCount = 0;
+			int isbn = (int)(Math.random() * (999999 - 100000 + 1) + 100000);			
 			for(int i = 0; i < list.size(); i++) {
 				if(isbn == list.get(i).getIsbn()) {
-					continue;
+					duplicateCount++;
 				}
 			}
-			list.get(bookCount - 1).setIsbn(isbn);
-			return;
+			if(duplicateCount == 0) {
+				list.get(bookCount - 1).setIsbn(isbn);
+				return;				
+			}
 		}
 	}
 
