@@ -24,15 +24,15 @@ public class MemberController {
 	@RequestMapping(value = "/member/signup", method=RequestMethod.GET)
 	public String signup() {
 
-		return "member/signup";
+		return "/member/signup";
 	}
 	
 	@RequestMapping(value = "/member/signup", method=RequestMethod.POST)
 	public String signupPost(MemberVO member, Model model) {
-		Message msg = new Message("/member/signup", "회원 가입에 실패했습니다.");
+		Message msg = new Message("member/signup", "회원 가입에 실패했습니다.");
 		
 		if(memberService.signup(member)) {
-			msg = new Message("/member/signup", "회원 가입에 성공했습니다.");
+			msg = new Message("member/signup", "회원 가입에 성공했습니다.");
 		}
 		model.addAttribute("msg", msg);
 		return "message";
@@ -41,15 +41,15 @@ public class MemberController {
 	@GetMapping(value = "/member/login")
 	public String login() {
 		
-		return "member/login";
+		return "/member/login";
 	}
 	
 	@PostMapping(value = "/member/login")
 	public String loginPost(MemberVO member, Model model) {
-		Message msg = new Message("/member/login", "로그인에 실패했습니다.");
+		Message msg = new Message("member/login", "로그인에 실패했습니다.");
 		MemberVO user = memberService.login(member);
 		if(user != null) {
-			msg = new Message("/", "로그인에 성공했습니다.");
+			msg = new Message("", "로그인에 성공했습니다.");
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("msg", msg);
@@ -60,7 +60,7 @@ public class MemberController {
 	public String logout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		Message msg = new Message("/", "로그아웃에 실패하였습니다.");
+		Message msg = new Message("", "로그아웃에 실패하였습니다.");
 		if(user != null) {
 			session.removeAttribute("user");
 			msg.setMsg("로그아웃에 성공하였습니다.");
