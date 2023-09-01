@@ -2,24 +2,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>회원가입</title>
+	<title>SIGN UP</title>
 </head>
 <body>
-	<h1>회원가입</h1>
+	<h1>SIGN UP</h1>
 	<form action="<c:url value='/member/signup' />" method="post">
 		<div class="form-group">
-			<label>아이디</label>
+			<label>ID</label>
 			<input type="text" class="form-control" name="me_id">
 		</div>
 		<div class="form-group">
-			<label>비밀번호</label>
+			<label>PASSWORD</label>
 			<input type="password" class="form-control" name="me_pw">
 		</div>
 		<div class="form-group">
-			<label>이메일</label>
+			<label>EMAIL</label>
 			<input type="email" class="form-control" name="me_email">
 		</div>
-		<button class="btn btn-outline-warning col-12">회원가입</button>
+		<button class="btn btn-outline-warning col-12">SIGN UP</button>
 	</form>
 </body>
 </html>

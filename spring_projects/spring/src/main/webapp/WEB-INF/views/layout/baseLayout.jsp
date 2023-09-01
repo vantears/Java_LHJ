@@ -5,6 +5,7 @@
 <!doctype html> 
 <html>
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta charset="UTF-8"> <!-- 추가할부분 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 추가할부분 -->
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- 추가할부분 -->
@@ -25,7 +26,7 @@
  	 }
 	} 
 	</style>
-<title>스프링</title>
+<title>Courage Community : CC</title>
 </head>
 <body>
     <tiles:insertAttribute name="header"/>

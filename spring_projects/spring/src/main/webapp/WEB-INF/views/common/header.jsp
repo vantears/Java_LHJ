@@ -7,22 +7,22 @@
   <ul class="navbar-nav">
     <c:if test="${user == null}">
 	    <li class="nav-item">
-	      <a class="nav-link" href="<c:url value='/member/signup' />">회원가입</a>
+	      <a class="nav-link" href="<c:url value='/member/signup' />">SIGN UP</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<c:url value='/member/login' />">로그인</a>
+	      <a class="nav-link" href="<c:url value='/member/login' />">LOGIN</a>
 	    </li>
     </c:if>
     <c:if test="${user != null}">
 		<li class="nav-item">
-	      <a class="nav-link" href="<c:url value='/member/logout' />">로그아웃</a>
+	      <a class="nav-link" href="<c:url value='/member/logout' />">LOGOUT</a>
 	    </li>
     </c:if>
     <li class="nav-item">
-      <a class="nav-link" href="<c:url value='/board/list' />">게시판</a>
+      <a class="nav-link" href="<c:url value='/board/list' />">BOARD</a>
     </li>
   </ul>
   <c:if test="${user != null}">
-  	<p id="welcome" class="nav-item m-0" style="color:white; position:absolute; right:16px">${user.getMe_id()}님 환영합니다.
+  	<p id="welcome" class="nav-item m-0" style="color:white; position:absolute; right:16px">WELCOME!　<span style="font-weight:bold; font-size:20px">${user.getMe_id()}</span> <a href="#" style="font-size:20px">&#128146;</a>
   </c:if>
 </nav>

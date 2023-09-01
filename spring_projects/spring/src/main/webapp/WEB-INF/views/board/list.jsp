@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>BOARD</title>
 </head>
 <body>
-	<h1>게시판</h1>
+	<h1>BOARD</h1>
 	<c:choose>
 		<c:when test="${pm.totalCount != 0}">
 			<table class="table table-hover">
 			    <thead>
 			      <tr>
-			      	<th>번호</th>
-			        <th>작성자</th>
-			        <th>제목</th>
+			      	<th>No</th>
+			        <th>User</th>
+			        <th>Title</th>
 			        <th> </th>
 			      </tr>
 			    </thead>
@@ -33,22 +33,22 @@
   			</table>
 		  	<ul class="pagination justify-content-center" style="margin:20px 0">
 				<c:if test="${pm.prev}">
-					<li class="page-item"><a class="page-link" href="<c:url value='${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a></li>
+					<li class="page-item"><a class="page-link" href="<c:url value='${pm.cri.getUrl(pm.startPage-1)}'/>">Prev</a></li>
 				</c:if>
 				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 					<li class="page-item <c:if test='${pm.cri.page == i}'> active</c:if>"><a class="page-link" href="<c:url value='${pm.cri.getUrl(i)}'/>">${i}</a></li>
 				</c:forEach>
 				<c:if test="${pm.next}">
-					<li class="page-item"><a class="page-link" href="<c:url value='${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a></li>
+					<li class="page-item"><a class="page-link" href="<c:url value='${pm.cri.getUrl(pm.endPage+1)}'/>">Next</a></li>
 				</c:if>
 	  		</ul>
   		</c:when>
 		<c:otherwise>
-			<h2>등록된 게시글이 없습니다.</h2>
+			<h2>No threads are posted yet</h2>
 		</c:otherwise>
 	</c:choose>
   <c:if test="${user != null && user.me_id != null }">
-  	<a class="btn btn-outline-danger" href="<c:url value='/board/insert'/>">글쓰기</a>
+  	<a class="btn btn-outline-danger" href="<c:url value='/board/insert'/>">POST</a>
   </c:if>
 </body>
 </html>

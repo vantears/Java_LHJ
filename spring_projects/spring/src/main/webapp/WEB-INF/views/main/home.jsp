@@ -2,9 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>스프링</title>
+	<title>Courage Community</title>
 </head>
 <body>
-	<h1>메인</h1>
+	<h1>Welcome to the board!</h1>
+	<h3>You can post threads, even with attached files.</h3>
 </body>
 </html>

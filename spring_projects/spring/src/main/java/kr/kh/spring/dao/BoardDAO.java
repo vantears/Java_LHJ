@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.vo.BoardVO;
+import kr.kh.spring.vo.FileVO;
 
 public interface BoardDAO {
 
@@ -17,6 +18,18 @@ public interface BoardDAO {
 
 	BoardVO selectBoard(@Param("bo_num") Integer bo_num);
 
-	void updateViews(Integer bo_num);
+	void updateViews(@Param("bo_num") Integer bo_num);
+
+	void insertFile(@Param("file") FileVO fileVo);
+
+	List<FileVO> selectFileList(@Param("bo_num") Integer bo_num);
+
+	void deleteBoard(@Param("bo_num") Integer bo_num);
+
+	boolean updateBoard(@Param("board") BoardVO board);
+	
+	FileVO selectFile(@Param("fi_num")Integer num);
+
+	void deleteFile(@Param("fi_num")Integer num);
 
 }
