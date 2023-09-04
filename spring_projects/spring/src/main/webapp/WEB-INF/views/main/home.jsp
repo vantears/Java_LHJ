@@ -5,7 +5,7 @@
 	<title>Courage Community</title>
 </head>
 <body>
-	<h1>Welcome to the board!</h1>
-	<h3>You can post threads, even with attached files.</h3>
+	<h1>Welcome to HJ BOARD</h1>
+	<h3>You can share ideas and upload files by posting</h3>
 </body>
 </html>

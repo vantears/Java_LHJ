@@ -23,6 +23,6 @@
     </li>
   </ul>
   <c:if test="${user != null}">
-  	<p id="welcome" class="nav-item m-0" style="color:white; position:absolute; right:16px">WELCOME!　<span style="font-weight:bold; font-size:20px">${user.getMe_id()}</span> <a href="#" style="font-size:20px">&#128146;</a>
+  	<p id="welcome" class="nav-item m-0" style="color:white; position:absolute; right:16px">WELCOME!　<span style="font-weight:bold; font-size:20px">${user.getMe_id()}</span> <a href="<c:url value='/member/info' />" style="font-size:20px; text-decoration:none;">&#128146;</a>
   </c:if>
 </nav>

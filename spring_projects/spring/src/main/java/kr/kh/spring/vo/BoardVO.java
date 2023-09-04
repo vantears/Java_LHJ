@@ -13,6 +13,7 @@ public class BoardVO {
 	private Date bo_reg_date, bo_up_date;
 	
 	private List<FileVO> fileVoList;
+	private LikeVO likeVo;
 	
 	public String getBo_up_date_str() {
 		if(bo_up_date == null) {

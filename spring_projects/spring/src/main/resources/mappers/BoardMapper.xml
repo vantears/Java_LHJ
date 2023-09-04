@@ -34,6 +34,12 @@
 	<select id="selectBoard" resultMap="BoardVO">
 		select * from board where bo_num = #{bo_num}
 	</select>
+	<select id="selectViewcount" resultType="kr.kh.spring.vo.ViewVO">
+		select * from view_count where vc_me_id = #{user.me_id} and vc_bo_num = #{bo_num}
+	</select>
+	<insert id="insertViewCount">
+		insert into view_count(vc_me_id, vc_bo_num) values(#{user.me_id}, #{bo_num})
+	</insert>
 	<update id="updateViews">
 		update board set bo_views = bo_views+1 where bo_num = #{bo_num}
 	</update>
@@ -43,6 +49,12 @@
 	</insert>
 	<select id="selectFileList" resultType="kr.kh.spring.vo.FileVO">
 		select * from file where fi_bo_num = #{bo_num}
+	</select>
+	<delete id="deleteFile">
+		delete from file where fi_num = #{fi_num}
+	</delete>
+	<select id="selectFile" resultType="kr.kh.spring.vo.FileVO">
+		select * from file where fi_num = #{fi_num}
 	</select>
 	<delete id="deleteBoard">
 		delete from board where bo_num = #{bo_num}
@@ -55,5 +67,26 @@
 			bo_up_date = now()
 		where
 			bo_num = #{board.bo_num}
+	</update>
+	<select id="selectLike" resultType="kr.kh.spring.vo.LikeVO">
+		select * from `like` where li_bo_num = #{bo_num} and li_me_id = #{user.me_id}
+	</select>
+	<insert id="insertLike">
+		insert into `like`(li_state, li_me_id, li_bo_num) values(#{li_state}, #{user.me_id}, #{bo_num})
+	</insert>
+	<update id="updateBoardLikeup">
+		update board set bo_up = bo_up + 1 where bo_num = #{bo_num}
+	</update>
+	<update id="updateBoardLikeupUndo">
+		update board set bo_up = bo_up - 1 where bo_num = #{bo_num}
+	</update>
+	<update id="updateBoardLikedown">
+		update board set bo_down = bo_down + 1 where bo_num = #{bo_num}
+	</update>
+	<update id="updateBoardLikedownUndo">
+		update board set bo_down = bo_down - 1 where bo_num = #{bo_num}
+	</update>
+	<update id="updateLike">
+		update `like` set li_state = #{li_state} where li_num = #{li_num}
 	</update>
 </mapper>

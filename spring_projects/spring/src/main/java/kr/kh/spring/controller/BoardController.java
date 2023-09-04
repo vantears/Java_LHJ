@@ -19,6 +19,7 @@ import kr.kh.spring.service.BoardService;
 import kr.kh.spring.util.Message;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Controller
@@ -51,7 +52,7 @@ public class BoardController {
 	public String insert(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user == null || user.getMe_id() == null) {
-			Message msg = new Message("/board/list", "게시글 작성을 위해 로그인을 해주세요.");
+			Message msg = new Message("/board/list", "Please log in first to post");
 			model.addAttribute("msg", msg);
 			return "message";
 		}
@@ -63,9 +64,9 @@ public class BoardController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		Message msg;
 		if(boardService.insertBoard(board, user, files)) {
-			msg = new Message("board/list", "게시글을 등록했습니다.");
+			msg = new Message("board/list", "Posted successfully");
 		} else {
-			msg = new Message("board/insert", "게시글 등록에 실패했습니다.");
+			msg = new Message("board/insert", "Failed to post");
 		}
 		model.addAttribute("msg", msg);
 		return "message";
@@ -73,14 +74,18 @@ public class BoardController {
 	
 	@GetMapping("/detail")
 	public String detail(Model model, Integer bo_num, Criteria cri, HttpSession session) {
-		boardService.updateViews(bo_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user != null && user.getMe_id() != null) {
+			boardService.updateViews(bo_num, user);			
+		}
 		BoardVO board = boardService.selectBoard(bo_num);
+		LikeVO like = boardService.searchLike(bo_num, user);
 		List<FileVO> fileList = boardService.getFileList(bo_num);
 		board.setFileVoList(fileList);
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 		model.addAttribute("user", user);
+		model.addAttribute("like", like);
 		return "/board/detail";
 	}
 	
@@ -89,7 +94,7 @@ public class BoardController {
 		BoardVO board = boardService.selectBoard(bo_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user == null || board == null || !user.getMe_id().equals(board.getBo_me_id())) {
-			Message msg = new Message("/board/list", "잘못된 접근입니다.");
+			Message msg = new Message("/board/list", "Wrong access");
 			model.addAttribute("msg", msg);
 			return "message";
 		}
@@ -103,9 +108,9 @@ public class BoardController {
 		Message msg;
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(boardService.updateBoard(board, files, delFiles, user)) {
-			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "게시글을 수정했습니다.");
+			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "Edited successfully");
 		}else {
-			msg = new Message("/board/update?bo_num="+board.getBo_num(), "게시글을 수정하지 못했습니다."); 
+			msg = new Message("/board/update?bo_num="+board.getBo_num(), "Failed to edit"); 
 		}
 		model.addAttribute("msg", msg);
 		return "message";
@@ -116,9 +121,39 @@ public class BoardController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		Message msg;
 		if(boardService.deleteBoard(bo_num, user)) {
-			msg = new Message("board/list", "게시글 삭제에 성공했습니다.");
+			msg = new Message("board/list", "Deleted successfully");
 		} else {
-			msg = new Message("board/list", "잘못된 접근입니다.");
+			msg = new Message("board/list", "Wrong access");
+		}
+		model.addAttribute("msg", msg);
+		return "message";
+	}
+	
+	@GetMapping("/likeup")
+	public String likeup(Integer bo_num, HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		Message msg;
+		BoardVO board = boardService.selectBoard(bo_num);
+		int likeState = 1;
+		if(boardService.likeBoard(bo_num, user, likeState)) {
+			msg = new Message("/board/detail?bo_num="+board.getBo_num(), null);
+		} else {
+			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "Failed to like");
+		}
+		model.addAttribute("msg", msg);
+		return "message";
+	}
+	
+	@GetMapping("/likedown")
+	public String likedown(Integer bo_num, HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		Message msg;
+		BoardVO board = boardService.selectBoard(bo_num);
+		int likeState = -1;
+		if(boardService.likeBoard(bo_num, user, likeState)) {
+			msg = new Message("/board/detail?bo_num="+board.getBo_num(), null);
+		} else {
+			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "Failed to Dislike");
 		}
 		model.addAttribute("msg", msg);
 		return "message";

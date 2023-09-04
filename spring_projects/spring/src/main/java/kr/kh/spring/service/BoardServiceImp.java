@@ -12,7 +12,9 @@ import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.util.UploadFileUtils;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikeVO;
 import kr.kh.spring.vo.MemberVO;
+import kr.kh.spring.vo.ViewVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -86,12 +88,18 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void updateViews(Integer bo_num) {
+	public void updateViews(Integer bo_num, MemberVO user) {
 		if(bo_num == null) {
 			return;
 		}
-		boardDao.updateViews(bo_num);
-		
+		if(user == null) {
+			return;
+		}
+		ViewVO viewcount = boardDao.selectViewcount(bo_num, user);
+		if(viewcount == null) {
+			boardDao.insertViewCount(bo_num, user);
+			boardDao.updateViews(bo_num);
+		}		
 	}
 
 	@Override
@@ -172,5 +180,74 @@ public class BoardServiceImp implements BoardService{
 		//삭제된 첨부파일을 서버에서 제거 및 DB에서 제거
 		deleteFile(delFiles);
 		return true;
+	}
+
+	@Override
+	public boolean likeBoard(Integer bo_num, MemberVO user, int likeState) {
+		if(bo_num == null) {
+			return false;
+		}
+		if(user == null || user.getMe_id() == null) {
+			return false;
+		}
+		if(likeState == 0) {
+			return false;
+		}
+		LikeVO dbLike = boardDao.selectLike(bo_num, user);
+		if(dbLike == null) {
+			if(likeState == 1) {
+				boardDao.insertLike(bo_num, user, likeState);
+				boardDao.updateBoardLikeup(bo_num);	
+				return true;
+			} else if(likeState == -1)
+				boardDao.insertLike(bo_num, user, likeState);
+				boardDao.updateBoardLikedown(bo_num);
+				return true;
+		}
+		switch(dbLike.getLi_state()) {
+		case 0:
+			if(likeState == 1) {
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikeup(bo_num);				
+			} else if(likeState == -1) {
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikedown(bo_num);
+			}
+			break;
+		case 1:
+			if(likeState == 1) {
+				likeState -= 1;
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikeupUndo(bo_num);				
+			} else if(likeState == -1) {
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikeupUndo(bo_num);
+				boardDao.updateBoardLikedown(bo_num);
+			}
+			break;
+		case -1:
+			if(likeState == 1) {
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikedownUndo(bo_num);
+				boardDao.updateBoardLikeup(bo_num);	
+			} else if(likeState == -1) {
+				likeState += 1;
+				boardDao.updateLike(dbLike.getLi_num(), likeState);
+				boardDao.updateBoardLikedownUndo(bo_num);
+			}
+			break;
+		}
+		return true;
+	}
+
+	@Override
+	public LikeVO searchLike(Integer bo_num, MemberVO user) {
+		if(bo_num == null) {
+			return null;
+		}
+		if(user == null || user.getMe_id() == null) {
+			return null;
+		}
+		return boardDao.selectLike(bo_num, user);
 	}
 }

@@ -14,9 +14,9 @@
 			<table class="table table-hover">
 			    <thead>
 			      <tr>
-			      	<th>No</th>
-			        <th>User</th>
-			        <th>Title</th>
+			      	<th>NO.</th>
+			        <th>USER</th>
+			        <th>TITLE</th>
 			        <th> </th>
 			      </tr>
 			    </thead>

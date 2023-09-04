@@ -26,7 +26,7 @@
  	 }
 	} 
 	</style>
-<title>Courage Community : CC</title>
+<title>HJ BOARD</title>
 </head>
 <body>
     <tiles:insertAttribute name="header"/>
