@@ -35,22 +35,20 @@ public interface BoardDAO {
 
 	void deleteFile(@Param("fi_num")Integer num);
 
-	LikeVO selectLike(@Param("bo_num") Integer bo_num, @Param("user") MemberVO user);
+	LikeVO selectLike(@Param("li_bo_num")int li_bo_num, @Param("li_me_id")String li_me_id);
 
-	void insertLike(@Param("bo_num") Integer bo_num, @Param("user") MemberVO user, @Param("li_state") int likeState);
+	void insertLike(@Param("like")LikeVO likeVo);
 
-	void updateBoardLikeup(@Param("bo_num") Integer bo_num);
+	void updateLike(@Param("like")LikeVO likeVo);
 
-	void updateLike(@Param("li_num") Integer li_num, @Param("li_state") int likeState);
-
-	void updateBoardLikedown(@Param("bo_num") Integer bo_num);
-
-	void updateBoardLikeupUndo(@Param("bo_num") Integer bo_num);
-
-	void updateBoardLikedownUndo(@Param("bo_num") Integer bo_num);
+	void updateBoardLike(@Param("bo_num")int li_bo_num);
 
 	ViewVO selectViewcount(@Param("bo_num") Integer bo_num, @Param("user") MemberVO user);
 
 	void insertViewCount(@Param("bo_num") Integer bo_num, @Param("user") MemberVO user);
+	
+	void deleteViewCount(@Param("bo_num") Integer bo_num, @Param("user") MemberVO user);
+
+	void updateBoardComment(@Param("co_bo_num") int co_bo_num);
 
 }

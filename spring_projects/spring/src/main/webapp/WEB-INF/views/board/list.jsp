@@ -25,7 +25,7 @@
 			        <td>${board.bo_num}</td>
 			        <td>${board.bo_me_id}</td>
 			        <td>
-			        	<a href="<c:url value='/board/detail${pm.cri.currentUrl}&bo_num=${board.bo_num}' />" style="color:black; text-decoration:none;">${board.bo_title}</a>
+			        	<a href="<c:url value='/board/detail${pm.cri.currentUrl}&bo_num=${board.bo_num}' />" style="color:black; text-decoration:none;"><c:if test="${board.bo_num != board.bo_ori_num }"><span style="color:red">ㄴReply : </span></c:if>${board.bo_title}</a>
 			        </td>
 			        <td style="text-align:right;">&#128488; ${board.bo_comment}　&#128065; ${board.bo_views}　&#128077; ${board.bo_up} &#128078; ${board.bo_down}　&#128197; ${board.bo_reg_date_str}</td>
 			      </tr>

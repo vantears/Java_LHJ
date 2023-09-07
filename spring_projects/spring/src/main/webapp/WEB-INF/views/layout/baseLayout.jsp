@@ -26,6 +26,19 @@
  	 }
 	} 
 	</style>
+	<script type="text/javascript">
+	function ajaxJsonToJson(async, type, url, sendObject, successFunc){
+		$.ajax({
+			async : async, 
+			type : type, 
+			url : '<c:url value="/"/>'+url, 
+			data : JSON.stringify(sendObject), 
+			contentType : "application/json; charset=UTF-8", 
+			dataType : "json",
+			success : successFunc
+		});
+	}
+	</script>
 <title>HJ BOARD</title>
 </head>
 <body>

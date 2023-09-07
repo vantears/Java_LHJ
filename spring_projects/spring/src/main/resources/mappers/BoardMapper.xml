@@ -18,18 +18,49 @@
 		<result property="bo_reg_date" column="bo_reg_date"/>
 		<collection property="fileVoList" ofType="kr.kh.spring.vo.FileVO" column="bo_num" select="selectFileList"/>
 	</resultMap>
-	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bo_num">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bo_num" >
 		insert into board(bo_num, bo_ori_num, bo_title, bo_contents, bo_me_id)
+		
 		select 
-			ifnull(max(bo_num),0)+1, ifnull(max(bo_num),0)+1,#{board.bo_title}, #{board.bo_contents}, #{board.bo_me_id}
+			ifnull(max(bo_num),0)+1, 
+		<choose>
+			<when test="board.bo_ori_num == 0">	
+				ifnull(max(bo_num),0)+1,
+			</when>
+			<otherwise>
+				#{board.bo_ori_num},
+			</otherwise>
+		</choose>
+			#{board.bo_title}, #{board.bo_contents}
+			,#{board.bo_me_id}
 		from 
 			board
 	</insert>
 	<select id="selectBoardList" resultType="kr.kh.spring.vo.BoardVO">
-		select * from board order by bo_num desc limit #{cri.pageStart},#{cri.perPageNum}
+		select * from board
+		<choose>
+			<when test='cri.type.equals("0")'>
+				where bo_title like concat('%', #{cri.search}, '%') or 
+					bo_contents like concat('%', #{cri.search}, '%')
+			</when>
+			<otherwise>
+				where ${cri.type} like concat('%', #{cri.search}, '%')
+			</otherwise>
+		</choose>
+		order by bo_ori_num desc, bo_num asc
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectBoardCount" resultType="int">
 		select count(*) from board
+		<choose>
+			<when test='cri.type.equals("0")'>
+				where bo_title like concat('%', #{cri.search}, '%') or 
+					bo_contents like concat('%', #{cri.search}, '%')
+			</when>
+			<otherwise>
+				where ${cri.type} like concat('%', #{cri.search}, '%')
+			</otherwise>
+		</choose>
 	</select>
 	<select id="selectBoard" resultMap="BoardVO">
 		select * from board where bo_num = #{bo_num}
@@ -40,6 +71,9 @@
 	<insert id="insertViewCount">
 		insert into view_count(vc_me_id, vc_bo_num) values(#{user.me_id}, #{bo_num})
 	</insert>
+	<delete id="deleteViewCount">
+		delete from view_count where vc_bo_num = #{bo_num} and vc_me_id = #{user.me_id}
+	</delete>
 	<update id="updateViews">
 		update board set bo_views = bo_views+1 where bo_num = #{bo_num}
 	</update>
@@ -69,24 +103,27 @@
 			bo_num = #{board.bo_num}
 	</update>
 	<select id="selectLike" resultType="kr.kh.spring.vo.LikeVO">
-		select * from `like` where li_bo_num = #{bo_num} and li_me_id = #{user.me_id}
+		select * from `like` where li_bo_num = #{li_bo_num} and li_me_id = #{li_me_id}
 	</select>
 	<insert id="insertLike">
-		insert into `like`(li_state, li_me_id, li_bo_num) values(#{li_state}, #{user.me_id}, #{bo_num})
+		insert into `like`(li_bo_num, li_me_id, li_state) 
+		values(#{like.li_bo_num},#{like.li_me_id},#{like.li_state})
 	</insert>
-	<update id="updateBoardLikeup">
-		update board set bo_up = bo_up + 1 where bo_num = #{bo_num}
-	</update>
-	<update id="updateBoardLikeupUndo">
-		update board set bo_up = bo_up - 1 where bo_num = #{bo_num}
-	</update>
-	<update id="updateBoardLikedown">
-		update board set bo_down = bo_down + 1 where bo_num = #{bo_num}
-	</update>
-	<update id="updateBoardLikedownUndo">
-		update board set bo_down = bo_down - 1 where bo_num = #{bo_num}
-	</update>
 	<update id="updateLike">
-		update `like` set li_state = #{li_state} where li_num = #{li_num}
+		update `like` set li_state = #{like.li_state} 
+			where li_bo_num = #{like.li_bo_num} and li_me_id = #{like.li_me_id}
+	</update>
+	<update id="updateBoardLike">
+		update board set
+			bo_up = (select count(*) from `like` where li_bo_num = #{bo_num} and li_state = 1),
+			bo_down = (select count(*) from `like` where li_bo_num = #{bo_num} and li_state = -1)
+		where
+			bo_num = #{bo_num}
+	</update>
+	<update id="updateBoardComment">
+		update board set
+			bo_comment = (select count(*) from comment where co_bo_num = #{co_bo_num})
+		where
+			bo_num = #{co_bo_num}
 	</update>
 </mapper>

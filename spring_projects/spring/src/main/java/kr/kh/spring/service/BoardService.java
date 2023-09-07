@@ -28,8 +28,8 @@ public interface BoardService {
 
 	boolean updateBoard(BoardVO board, MultipartFile[] files, Integer[] delFiles, MemberVO user);
 
-	boolean likeBoard(Integer bo_num, MemberVO user, int likeState);
+	int like(LikeVO likeVo);
 
-	LikeVO searchLike(Integer bo_num, MemberVO user);
+	LikeVO getBoardLike(Integer bo_num, MemberVO user);
 
 }

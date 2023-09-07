@@ -30,7 +30,7 @@ public class PageMaker {
 		next = endPage == lastEndPage ? false : true;
 	}
 	
-	public PageMaker(int totalCount, int displayPageNum, Criteria cri) {
+	public PageMaker(int displayPageNum, Criteria cri, int totalCount) {
 		this.totalCount = totalCount;
 		this.displayPageNum = displayPageNum;
 		this.cri = cri;

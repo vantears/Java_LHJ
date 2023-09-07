@@ -121,7 +121,9 @@ public class BoardServiceImp implements BoardService{
 		}
 		List<FileVO> fileList = board.getFileVoList();
 		deleteFile(fileList);
+		boardDao.deleteViewCount(bo_num, user);
 		boardDao.deleteBoard(bo_num);
+		
 		return true;
 		
 	}
@@ -183,71 +185,35 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public boolean likeBoard(Integer bo_num, MemberVO user, int likeState) {
-		if(bo_num == null) {
-			return false;
+	public int like(LikeVO likeVo) {
+		if(likeVo == null || likeVo.getLi_me_id() == null) {
+			return -100;
 		}
-		if(user == null || user.getMe_id() == null) {
-			return false;
+		//기존 추천 정보를 가져옴(게시글 번호와 아이디)
+		LikeVO dbLikeVo = boardDao.selectLike(likeVo.getLi_bo_num(), likeVo.getLi_me_id());
+		
+		//기존 추천 정보가 없으면
+		if(dbLikeVo == null) {
+			//추가
+			boardDao.insertLike(likeVo);
 		}
-		if(likeState == 0) {
-			return false;
-		}
-		LikeVO dbLike = boardDao.selectLike(bo_num, user);
-		if(dbLike == null) {
-			if(likeState == 1) {
-				boardDao.insertLike(bo_num, user, likeState);
-				boardDao.updateBoardLikeup(bo_num);	
-				return true;
-			} else if(likeState == -1)
-				boardDao.insertLike(bo_num, user, likeState);
-				boardDao.updateBoardLikedown(bo_num);
-				return true;
-		}
-		switch(dbLike.getLi_state()) {
-		case 0:
-			if(likeState == 1) {
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikeup(bo_num);				
-			} else if(likeState == -1) {
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikedown(bo_num);
+		else {//있으면
+			//db에 있는 추천 상태와 화면에 누른 추천 상태가 같으면 => 취소 
+			if(dbLikeVo.getLi_state() == likeVo.getLi_state()) {
+				likeVo.setLi_state(0);
 			}
-			break;
-		case 1:
-			if(likeState == 1) {
-				likeState -= 1;
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikeupUndo(bo_num);				
-			} else if(likeState == -1) {
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikeupUndo(bo_num);
-				boardDao.updateBoardLikedown(bo_num);
-			}
-			break;
-		case -1:
-			if(likeState == 1) {
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikedownUndo(bo_num);
-				boardDao.updateBoardLikeup(bo_num);	
-			} else if(likeState == -1) {
-				likeState += 1;
-				boardDao.updateLike(dbLike.getLi_num(), likeState);
-				boardDao.updateBoardLikedownUndo(bo_num);
-			}
-			break;
+			//업데이트
+			boardDao.updateLike(likeVo);
 		}
-		return true;
+		boardDao.updateBoardLike(likeVo.getLi_bo_num());
+		return likeVo.getLi_state();
 	}
 
 	@Override
-	public LikeVO searchLike(Integer bo_num, MemberVO user) {
-		if(bo_num == null) {
+	public LikeVO getBoardLike(Integer bo_num, MemberVO user) {
+		if(bo_num == null || user == null) {
 			return null;
 		}
-		if(user == null || user.getMe_id() == null) {
-			return null;
-		}
-		return boardDao.selectLike(bo_num, user);
+		return boardDao.selectLike(bo_num, user.getMe_id());
 	}
 }

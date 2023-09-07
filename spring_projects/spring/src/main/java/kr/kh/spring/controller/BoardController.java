@@ -1,6 +1,8 @@
 package kr.kh.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.pagination.Criteria;
@@ -32,13 +36,13 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model, Criteria cri, HttpSession session) {
 		
-		cri.setPerPageNum(3);
+		cri.setPerPageNum(6);
 		List<BoardVO> list = boardService.selectBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);
 		//페이지네이션에서 최대 페이지 개수
 		int displayPageNum = 3;
 		
-		PageMaker pm = new PageMaker(totalCount, displayPageNum, cri);
+		PageMaker pm = new PageMaker(displayPageNum, cri, totalCount);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		model.addAttribute("user", user);
@@ -49,13 +53,14 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insert")
-	public String insert(HttpSession session, Model model) {
+	public String insert(HttpSession session, Model model, Integer bo_ori_num) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user == null || user.getMe_id() == null) {
 			Message msg = new Message("/board/list", "Please log in first to post");
 			model.addAttribute("msg", msg);
 			return "message";
 		}
+		model.addAttribute("bo_ori_num", bo_ori_num == null ? 0 : bo_ori_num);
 		return "/board/insert";
 	}
 	
@@ -79,8 +84,8 @@ public class BoardController {
 			boardService.updateViews(bo_num, user);			
 		}
 		BoardVO board = boardService.selectBoard(bo_num);
-		LikeVO like = boardService.searchLike(bo_num, user);
 		List<FileVO> fileList = boardService.getFileList(bo_num);
+		LikeVO like = boardService.getBoardLike(bo_num, user);
 		board.setFileVoList(fileList);
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
@@ -129,35 +134,16 @@ public class BoardController {
 		return "message";
 	}
 	
-	@GetMapping("/likeup")
-	public String likeup(Integer bo_num, HttpSession session, Model model) {
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		Message msg;
-		BoardVO board = boardService.selectBoard(bo_num);
-		int likeState = 1;
-		if(boardService.likeBoard(bo_num, user, likeState)) {
-			msg = new Message("/board/detail?bo_num="+board.getBo_num(), null);
-		} else {
-			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "Failed to like");
-		}
-		model.addAttribute("msg", msg);
-		return "message";
+	@ResponseBody
+	@PostMapping("/like")
+	public Map<String, Object> ajaxTest(@RequestBody LikeVO likeVo){
+		Map<String, Object> map = new HashMap<String, Object>();
+		//추천 : 1, 비추천 : -1, 취소: 0
+		int res = boardService.like(likeVo);
+		BoardVO board = boardService.selectBoard(likeVo.getLi_bo_num());
+		map.put("res", res);
+		map.put("board", board);
+		return map;
 	}
-	
-	@GetMapping("/likedown")
-	public String likedown(Integer bo_num, HttpSession session, Model model) {
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		Message msg;
-		BoardVO board = boardService.selectBoard(bo_num);
-		int likeState = -1;
-		if(boardService.likeBoard(bo_num, user, likeState)) {
-			msg = new Message("/board/detail?bo_num="+board.getBo_num(), null);
-		} else {
-			msg = new Message("/board/detail?bo_num="+board.getBo_num(), "Failed to Dislike");
-		}
-		model.addAttribute("msg", msg);
-		return "message";
-	}
-
 
 }

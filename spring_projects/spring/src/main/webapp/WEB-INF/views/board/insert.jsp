@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 	<h1>POST</h1>
 	<form action="<c:url value=''/>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="bo_ori_num" value="${bo_ori_num}">
 		<div class="form-group">
 			<label>TITLE</label>
 			<input type="text" class="form-control" name="bo_title">
